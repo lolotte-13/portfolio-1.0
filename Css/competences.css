@@ -1,0 +1,140 @@
+/* =========================
+   PAGE COMPETENCES
+========================= */
+
+h2 {
+    font-size: 30px;
+    text-align: center;
+    text-decoration: underline #ffffff;
+    color: white;
+    font-weight: bold;
+    margin: 30px 0 15px;
+}
+
+/* CONTAINER */
+
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* GRILLE (disposition des cartes)*/
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+}
+
+/* =========================
+   CARTE COMPETENCE
+========================= */
+
+figure.skill {
+    background: #4d79da;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    align-self: flex-start; 
+}
+
+figure.skill:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+/* =========================
+   DETAILS DE LA COMPETENCE
+========================= */
+
+.skill details {
+    width: 100%;
+}
+
+.skill summary {
+    list-style: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.skill summary::-webkit-details-marker {
+    display: none;
+}
+
+/* zone cliquable strictement limitée */
+.skill summary > * {
+    pointer-events: none;
+}
+
+.skill summary {
+    pointer-events: auto;
+}
+
+/* =========================
+   CONTENU PRINCIPAL
+========================= */
+
+.skill img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin: 20px auto 10px;
+    transition: transform 0.3s ease;
+}
+
+.skill summary:hover img {
+    transform: scale(1.2);
+}
+
+.skill figcaption {
+    font-weight: bold;
+    margin-top: 8px;
+    color: white;
+}
+
+/* =========================
+   INFOS (FERMÉES)
+========================= */
+
+.skill-info {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    padding: 0;
+    background: transparent;
+    transition:
+        max-height 0.35s ease,
+        opacity 0.25s ease,
+        padding 0.35s ease;
+    font-size: 14px;
+    color: white;
+}
+
+/* =========================
+   INFOS (OUVERTES)
+========================= */
+
+.skill details[open] .skill-info {
+    max-height: 140px;
+    opacity: 1;
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    font-style: italic;
+    font-size: 12px;
+    text-align: right;
+    padding: 20px;
+    margin-top: 40px;
+    color: rgb(0, 0, 0);
+}

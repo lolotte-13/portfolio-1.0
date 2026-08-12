@@ -1,0 +1,227 @@
+:root{
+  --bg: #0b1020;
+  --card: rgba(255,255,255,0.06);
+  --text: rgba(255,255,255,0.92);
+  --muted: rgba(255,255,255,0.70);
+  --line: rgba(255,255,255,0.16);
+  --accent: #7c5cff;
+  --radius: 18px;
+}
+
+.timeline-section{
+  background:
+    radial-gradient(1200px 500px at 10% -10%, rgba(124,92,255,.30), transparent 60%),
+    radial-gradient(900px 450px at 90% 10%, rgba(31, 90, 177, 0.377), transparent 55%),
+    var(--bg);
+  color: var(--text);
+  padding: 72px 18px;
+}
+
+/* Header */
+.timeline-header{
+  max-width: 980px;
+  margin: 0 auto 34px;
+  text-align: center;
+}
+
+.timeline-header h2{
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.1;
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+}
+
+.timeline-header p{
+  margin: 0 auto;
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+/* Timeline container */
+.timeline{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  position: relative;
+}
+
+/* Center line */
+.timeline::before{
+  content:"";
+  position:absolute;
+  left: 50%;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(to bottom, transparent, var(--line) 10%, var(--line) 90%, transparent);
+}
+
+/* boite Droite /gauche  */
+.timeline-item{
+  display: grid;
+  grid-template-columns: 1fr 44px 1fr;
+  gap: 18px;
+  padding: 14px 0;
+  align-items: start;
+}
+
+/* cercle violet  */
+.timeline-dot{
+  grid-column: 2;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+  justify-self: center;
+  margin-top: 22px;
+  box-shadow: 0 0 0 6px rgba(124,92,255,.12);
+  animation: dotPulse 2.6s ease-in-out infinite;
+}
+
+@keyframes dotPulse{
+  0%, 100% { box-shadow: 0 0 0 6px rgba(124,92,255,.10); }
+  50%      { box-shadow: 0 0 0 10px rgba(124,92,255,.16); }
+}
+
+/* Card */
+.timeline-card{
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: var(--radius);
+  padding: 18px 18px 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  position: relative;
+}
+
+/* Alternate sides */
+.timeline-item:nth-child(odd) .timeline-card{
+  grid-column: 1;
+  justify-self: end;
+}
+
+.timeline-item:nth-child(even) .timeline-card{
+  grid-column: 3;
+  justify-self: start;
+}
+
+/* Small arrow pointing to the center line */
+.timeline-item:nth-child(odd) .timeline-card::after,
+.timeline-item:nth-child(even) .timeline-card::after{
+  content:"";
+  position:absolute;
+  top: 26px;
+  width: 14px;
+  height: 14px;
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.10);
+  transform: rotate(45deg);
+}
+
+.timeline-item:nth-child(odd) .timeline-card::after{
+  right: -7px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.timeline-item:nth-child(even) .timeline-card::after{
+  left: -7px;
+  border-right: none;
+  border-top: none;
+}
+
+/* Card content */
+.timeline-card h3{
+  margin: 0 0 6px;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+
+.timeline-subtitle{
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.timeline-date{
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.timeline-text{
+  margin: 0 0 12px;
+  color: rgba(255,255,255,0.86);
+  line-height: 1.5;
+}
+
+.timeline-tags{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.timeline-tags li{
+  font-size: 12px;
+  color: rgba(255,255,255,0.82);
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.04);
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
+/* Reveal animation */
+.reveal{
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .6s ease, transform .6s ease;
+  will-change: opacity, transform;
+}
+
+@media (min-width: 721px){
+  .timeline-item:nth-child(odd) .reveal{
+    transform: translateY(14px) translateX(-10px);
+  }
+  .timeline-item:nth-child(even) .reveal{
+    transform: translateY(14px) translateX(10px);
+  }
+}
+
+.reveal.is-visible{
+  opacity: 1;
+  transform: translateY(0) translateX(0);
+}
+
+/* Mobile: 1 column + line on the left */
+@media (max-width: 720px){
+  .timeline::before{
+    left: 14px;
+    transform: none;
+  }
+
+  .timeline-item{
+    grid-template-columns: 44px 1fr;
+    gap: 12px;
+  }
+
+  .timeline-dot{
+    grid-column: 1;
+    justify-self: start;
+    margin-left: 6p
+  }
+
+  .timeline-card{
+    grid-column: 2 !important;
+    justify-self: stretch !important;
+  }
+
+  .timeline-card::after{
+    display: none;
+  }
+}
