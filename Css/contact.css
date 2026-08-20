@@ -196,27 +196,14 @@ footer {
 }
 
 @media screen and (max-width:768px){
-    header nav ul li {
-    display: inline-block;
-    margin: 0 30px;
-    padding: 5px 15px;
-    border-radius: 57px;
-    background-color: gray;
-    box-shadow: -8px 8px 22px 5px #444444 inset;
-    border: 1px solid #000000;
-    position: relative;
+ 
 }
 
 header nav a {
-    color: rgb(87, 164, 228);
-    text-decoration: none;
-    font-weight: bold;
-    font-family: 'Open Sans', sans-serif;
+ 
 }
 
 header nav ul li:hover {
-    box-shadow: -8px 8px 22px 5px #2e63b4 inset;
-    text-decoration: underline;
-    text-shadow: -2px 2px 2px #000000;}
+
 
 }
